@@ -83,7 +83,7 @@ python3 data_analysis.py
 | Left Click | Attack nearest enemy |
 | `E` | Use area skill (costs MP) |
 | `Space` | Use health potion |
-| `F` | Open / close shop (available on floors 5, 10, 15, 20) |
+| `F` | Open / close shop (available on every floors ) |
 | `ESC` | Return to main menu |
 
 ### Game Flow
@@ -93,7 +93,7 @@ python3 data_analysis.py
 3. **Click a class card** to highlight it, then click the **"Play as …"** button (or press Enter) to start.
 4. Explore the dungeon with WASD. The **green-tinted room** at the start of each floor is the **Safe Zone** — enemies cannot attack you there.
 5. Right-click to attack enemies. Kill all enemies to advance to the next floor.
-6. On every 5th floor a **Shop** appears — press `F` to open it and click or press 1–4 to buy items.
+6. Shop  — press `F` to open it and click to buy items.
 7. Reach **Floor 20** to win. If you die, you respawn at Floor 1 with your level and items kept.
 
 ---
@@ -105,7 +105,7 @@ python3 data_analysis.py
 - **Safe Zone** — the first room of every floor is a protected spawn area; enemies cannot attack the player inside it.
 - **Enemy AI** — finite-state machine (idle → chase → attack) with BFS pathfinding.
 - **Boss Floors** — a stronger boss enemy spawns on every 5th floor.
-- **Shop System** — appears on floors 5, 10, 15, 20; supports keyboard (1–4) and mouse click to purchase.
+- **Shop System** — use mouse click to purchase.
 - **Level-Up System** — gaining enough XP levels up the player, fully restoring HP and MP and increasing stats.
 - **Death & Respawn** — dying returns the player to Floor 1; level, gold, and items are preserved.
 - **Data Collection** — every floor clear and shop visit is logged to `combat_log.csv` and `shop_log.csv`.

@@ -42,7 +42,7 @@
 
 ### 2.1 Background
 
-Roguelite games have long been popular for their high replayability: procedural generation and permadeath ensure that no two runs feel identical. Games such as *Pixel Dungeon* demonstrate that even a simple, single-developer roguelike can deliver deep strategic choices through class selection, item management, and enemy variety.
+Roguelite games have long been popular for their high replayability: procedural generation and permadeath ensure that no two runs feel identical. Games such as *Pixel Dungeon* demonstrate that even a simple, single-developer roguelike can deliver deep strategic choices through class selection, item management.
 
 This project was inspired by the desire to combine that familiar roguelite loop with lightweight in-game telemetry. Most commercial games use proprietary analytics pipelines hidden from developers and players alike. Here, the data collection is transparent, file-based (CSV), and immediately usable — aligning with the course's emphasis on data processing in Python.
 
@@ -62,7 +62,7 @@ The core problem the game addresses is **engagement through meaningful choice**:
 
 The diagram below summarises the key classes and their relationships.
 
-```
+
 *(A PDF version of the UML diagram is attached as `UML.pdf` in this repository.)*
 
 ---
