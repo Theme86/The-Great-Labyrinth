@@ -34,7 +34,7 @@
 
 - **Proposal:** [proposal.pdf](./proposal.pdf)
 
-- **YouTube Presentation:** *(link to be added after recording)*
+- **YouTube Presentation:** *(https://www.youtube.com/watch?v=uK29S5CFjsc)*
 
 ---
 
