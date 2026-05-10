@@ -170,6 +170,7 @@ class Game:
                     if self.shop and self.shop.total_spent > 0:
                         self.stats.record_shop(self.floor, self.shop.total_spent)
                         self.shop.total_spent = 0
+                    return
                 elif key == pygame.K_r:   # R = refresh shop for 20g
                     if self.player.money >= 20:
                         self.player.money -= 20
@@ -178,6 +179,7 @@ class Game:
                             self.player.px, self.player.py - 40, (255, 210, 60)))
                 else:
                     self.shop.handle_key(key, self.player, self.stats, self.floor, self.floats)
+                    return
 
             if key == KEY_POTION:
                 h = self.player.use_potion(self.stats)

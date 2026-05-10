@@ -146,7 +146,7 @@ class Player(Entity):
         if self.skill_cooldown > 0 or self.mp < 35:
             return []
         self.mp            -= 35
-        self.skill_cooldown = 200
+        self.skill_cooldown = 2000
         hit = []
         for e in enemies:
             if dist((self.px, self.py), (e.px, e.py)) < TILE * 3.5:
