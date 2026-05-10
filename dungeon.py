@@ -102,10 +102,9 @@ class Dungeon:
             for cx in range(rooms[0].left, rooms[0].right):
                 self.safe_tiles.add((cx, cy))
 
-        # 4. Shop on every 5th floor (last room)
-        if self.floor % 5 == 0:
-            sr = rooms[-1]
-            self.shop_pos = (sr.centerx, sr.centery)
+        # 4. Shop
+        sr = rooms[-1]
+        self.shop_pos = (sr.centerx, sr.centery)
 
     # ── Helpers ───────────────────────────────────────────────────────────────
     def walkable(self, gx: int, gy: int) -> bool:

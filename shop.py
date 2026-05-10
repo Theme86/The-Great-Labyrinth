@@ -19,7 +19,8 @@ class Shop:
 
     def __init__(self):
         self.total_spent = 0
-        self.inventory = random.sample(ITEMS, min(4, len(ITEMS)))
+        weights = [item["weight"] for item in ITEMS]
+        self.inventory = random.choices(ITEMS, weights=weights, k=4)
         self.bought    : set[int] = set()
         # Pre-compute item rects (relative to panel origin; resolved in draw)
         self._item_rects: list[pygame.Rect] = []
@@ -82,7 +83,7 @@ class Shop:
                 surf.blit(kk, (ix + self.ITEM_W - 30, iy + 22))
 
         hint = fonts["sm"].render(
-            "Click or press 1-4 to buy   |   F to close",
+            "1-4 / Click: Buy   |   R: Refresh (20g)   |   F: Close",
             True, C_GRAY,
         )
         surf.blit(hint, (ox + ow // 2 - hint.get_width() // 2, oy + oh - 26))
@@ -131,3 +132,10 @@ class Shop:
         elif item["effect"] == "luck":
             player.potions += 1
             floats.append(FloatText('+1 Potion!', fx, fy, C_POTION))
+
+    # ── Refresh shop inventory (costs gold, handled in main.py) ──────────────
+    def refresh(self):
+        weights = [item["weight"] for item in ITEMS]
+        self.inventory = random.choices(ITEMS, weights=weights, k=4)
+        self.bought    = set()
+

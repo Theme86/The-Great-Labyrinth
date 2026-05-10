@@ -70,9 +70,6 @@ class Game:
         Level, XP, ATK, items are KEPT.  HP/MP are restored.
         """
         self.floor = 1
-        self.stats.record_encounter(self.floor)
-        self.stats.save_to_csv()
-        # Restore HP/MP before loading
         self.player.hp = self.player.max_hp
         self.player.mp = self.player.max_mp
         self._load_floor()          # reuse existing player object
@@ -170,11 +167,17 @@ class Game:
                 # Shop takes keyboard priority
                 if key == KEY_SHOP:
                     self.shop_open = False
+                    if self.shop and self.shop.total_spent > 0:
+                        self.stats.record_shop(self.floor, self.shop.total_spent)
+                        self.shop.total_spent = 0
+                elif key == pygame.K_r:   # R = refresh shop for 20g
+                    if self.player.money >= 20:
+                        self.player.money -= 20
+                        self.shop.refresh()
+                        self.floats.append(FloatText("-20g  Shop Refreshed!",
+                            self.player.px, self.player.py - 40, (255, 210, 60)))
                 else:
-                    self.shop.handle_key(
-                        key, self.player, self.stats, self.floor, self.floats,
-                    )
-                return
+                    self.shop.handle_key(key, self.player, self.stats, self.floor, self.floats)
 
             if key == KEY_POTION:
                 h = self.player.use_potion(self.stats)
@@ -211,7 +214,7 @@ class Game:
                     self.shop.handle_click(pos, self.player, self.stats, self.floor, self.floats)
                 return
             if button == 1:   # Left click → attack
-                self.player.attack_nearest(self.enemies, self.floats, self.stats)
+                self.player.attack_nearest(self.enemies, self.floats, self.stats, self.dungeon)
 
     # ── Update ────────────────────────────────────────────────────────────────
     def _update(self):
@@ -278,6 +281,8 @@ class Game:
 
         # Death check
         if not p.is_alive():
+            self.stats.record_encounter(self.floor)
+            self.stats.save_to_csv()
             self.state = ST_DEAD
 
     # ── Draw ──────────────────────────────────────────────────────────────────

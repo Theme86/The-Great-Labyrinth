@@ -67,7 +67,7 @@ class Player(Entity):
         self.level       = 1
         self.xp          = 0
         self.xp_next     = 30
-        self.potions     = 3
+        self.potions     = 5
         self.inventory   = []
         # movement
         self.path        : list = []
@@ -121,8 +121,12 @@ class Player(Entity):
         enemies: list,
         floats: list,
         stats,
+        dungeon=None,
     ) -> "Enemy | None":
         if self.atk_cooldown > 0 or not enemies:
+            return None
+        # Cannot attack while standing in safe zone
+        if dungeon and dungeon.is_safe(self.gx, self.gy):
             return None
         nearest = min(enemies, key=lambda e: dist((self.px, self.py), (e.px, e.py)))
         if dist((self.px, self.py), (nearest.px, nearest.py)) < TILE * self.atk_range:
@@ -139,10 +143,10 @@ class Player(Entity):
         return None
 
     def use_skill(self, enemies: list, floats: list, stats) -> list:
-        if self.skill_cooldown > 0 or self.mp < 20:
+        if self.skill_cooldown > 0 or self.mp < 35:
             return []
-        self.mp            -= 20
-        self.skill_cooldown = 110
+        self.mp            -= 35
+        self.skill_cooldown = 200
         hit = []
         for e in enemies:
             if dist((self.px, self.py), (e.px, e.py)) < TILE * 3.5:
@@ -201,16 +205,16 @@ class Enemy(Entity):
 
         # ── Tuned difficulty ──────────────────────────────────────────────────
         # Scale grows slowly; enemies are weaker in early floors.
-        scale = 1.0 + floor * 0.10          # was 0.15
+        scale = 1.0 + floor * 0.18
         if is_boss:
-            scale *= 2.0                    # was 2.5
+            scale *= 2.8
 
-        self.max_hp = self.hp = int(random.randint(18, 28) * scale)   # was 20-35
-        self.atk              = int(random.randint(6,  11) * scale)   # was 8-14
+        self.max_hp = self.hp = int(random.randint(22, 36) * scale)
+        self.atk              = int(random.randint(8,  15) * scale)
         self.defense          = 0
 
-        self.xp_reward   = int((12 if is_boss else 4) * scale)
-        self.gold_reward = int(random.randint(4, 12)  * scale)
+        self.xp_reward   = int((14 if is_boss else 5) * scale)
+        self.gold_reward = int(random.randint(10, 25)  * scale)
 
         self.name  = "BOSS" if is_boss else random.choice(ENEMY_NAMES)
         self.state = "idle"

@@ -62,17 +62,90 @@ CLASSES = {
 
 # ── Shop items ────────────────────────────────────────────────────────────────
 ITEMS = [
-    {"name": "Health Potion", "price": 30, "type": "consumable",
-     "effect": "heal",  "value": 50,  "color": C_POTION},
-    {"name": "Attack Gem",    "price": 50, "type": "equipment",
-     "effect": "atk",   "value": 10,  "color": C_GOLD},
-    {"name": "Shield Stone",  "price": 45, "type": "equipment",
-     "effect": "def",   "value":  6,  "color": (180, 180, 220)},
-    {"name": "Mana Crystal",  "price": 35, "type": "consumable",
-     "effect": "mp",    "value": 40,  "color": C_MP_BAR},
-    {"name": "Lucky Charm",   "price": 60, "type": "equipment",
-     "effect": "luck",  "value":  1,  "color": C_HIGHLIGHT},
+    # ── LOW TIER (price 15–40, weight 50–60) ─────────────────────────────────
+    {"name": "Small Potion",    "tier": "low",  "price": 15, "weight": 60,
+     "type": "consumable", "effect": "heal", "value": 25,
+     "color": (80, 200, 120)},
+ 
+    {"name": "Herb Bundle",     "tier": "low",  "price": 20, "weight": 55,
+     "type": "consumable", "effect": "heal", "value": 35,
+     "color": (100, 210, 100)},
+ 
+    {"name": "Mana Shard",      "tier": "low",  "price": 20, "weight": 55,
+     "type": "consumable", "effect": "mp",   "value": 25,
+     "color": (80, 130, 220)},
+ 
+    {"name": "Worn Dagger",     "tier": "low",  "price": 25, "weight": 50,
+     "type": "equipment",  "effect": "atk",  "value": 4,
+     "color": (160, 160, 180)},
+ 
+    {"name": "Cracked Shield",  "tier": "low",  "price": 25, "weight": 50,
+     "type": "equipment",  "effect": "def",  "value": 3,
+     "color": (140, 140, 160)},
+ 
+    {"name": "Iron Ring",       "tier": "low",  "price": 30, "weight": 50,
+     "type": "equipment",  "effect": "atk",  "value": 5,
+     "color": (170, 170, 190)},
+ 
+    {"name": "Health Potion",   "tier": "low",  "price": 35, "weight": 55,
+     "type": "consumable", "effect": "heal", "value": 50,
+     "color": C_POTION},
+ 
+    {"name": "Mana Potion",     "tier": "low",  "price": 35, "weight": 50,
+     "type": "consumable", "effect": "mp",   "value": 40,
+     "color": (60, 120, 220)},
+ 
+    # ── MID TIER (price 50–90, weight 25–35) ─────────────────────────────────
+    {"name": "Steel Sword",     "tier": "mid",  "price": 55, "weight": 30,
+     "type": "equipment",  "effect": "atk",  "value": 9,
+     "color": (200, 200, 220)},
+ 
+    {"name": "Iron Armor",      "tier": "mid",  "price": 55, "weight": 30,
+     "type": "equipment",  "effect": "def",  "value": 8,
+     "color": (180, 185, 210)},
+ 
+    {"name": "Attack Gem",      "tier": "mid",  "price": 60, "weight": 28,
+     "type": "equipment",  "effect": "atk",  "value": 10,
+     "color": C_GOLD},
+ 
+    {"name": "Shield Stone",    "tier": "mid",  "price": 60, "weight": 28,
+     "type": "equipment",  "effect": "def",  "value": 8,
+     "color": (180, 180, 220)},
+ 
+    {"name": "Mana Crystal",    "tier": "mid",  "price": 65, "weight": 28,
+     "type": "consumable", "effect": "mp",   "value": 60,
+     "color": C_MP_BAR},
+ 
+    {"name": "Elixir",          "tier": "mid",  "price": 70, "weight": 25,
+     "type": "consumable", "effect": "heal", "value": 80,
+     "color": (100, 230, 150)},
+ 
+    {"name": "Battle Axe",      "tier": "mid",  "price": 80, "weight": 25,
+     "type": "equipment",  "effect": "atk",  "value": 13,
+     "color": (210, 170, 80)},
+ 
+    {"name": "Tower Shield",    "tier": "mid",  "price": 85, "weight": 25,
+     "type": "equipment",  "effect": "def",  "value": 11,
+     "color": (160, 180, 230)},
+ 
+    # ── HIGH TIER (price 100–160, weight 8–15) ────────────────────────────────
+    {"name": "Dragon Fang",     "tier": "high", "price": 110, "weight": 12,
+     "type": "equipment",  "effect": "atk",  "value": 18,
+     "color": (230, 100, 60)},
+ 
+    {"name": "Aegis Plate",     "tier": "high", "price": 110, "weight": 12,
+     "type": "equipment",  "effect": "def",  "value": 15,
+     "color": (120, 160, 255)},
+ 
+    {"name": "Grand Elixir",    "tier": "high", "price": 130, "weight": 10,
+     "type": "consumable", "effect": "heal", "value": 150,
+     "color": (60, 255, 160)},
+ 
+    {"name": "Arcane Tome",     "tier": "high", "price": 150, "weight": 8,
+     "type": "equipment",  "effect": "atk",  "value": 22,
+     "color": (180, 80, 255)},
 ]
+ 
 
 # ── Key bindings (easy to remap) ──────────────────────────────────────────────
 import pygame
