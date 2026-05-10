@@ -18,6 +18,7 @@ class Shop:
     OW, OH  = 520, 400
 
     def __init__(self):
+        self.total_spent = 0
         self.inventory = random.sample(ITEMS, min(4, len(ITEMS)))
         self.bought    : set[int] = set()
         # Pre-compute item rects (relative to panel origin; resolved in draw)
@@ -112,7 +113,7 @@ class Shop:
             return
         player.money -= item["price"]
         self.bought.add(idx)
-        stats.record_shop(floor, item["price"])
+        self.total_spent += item["price"]
 
         fx, fy = player.px, player.py - 30
         if item["effect"] == "heal":
