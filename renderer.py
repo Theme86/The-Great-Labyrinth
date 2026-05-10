@@ -41,7 +41,7 @@ def draw_menu(surf: pygame.Surface, fonts: dict):
     surf.blit(btn, (SCREEN_W // 2 - btn.get_width() // 2, 350))
 
     hint = fonts["sm"].render(
-        "WASD: Move  |  Right Click: Attack  |  E: Skill  |  SPACE: Potion  |  F: Shop",
+        "WASD: Move  |  Left Click: Attack  |  E: Skill  |  SPACE: Potion  |  F: Shop",
         True, C_GRAY,
     )
     surf.blit(hint, (SCREEN_W // 2 - hint.get_width() // 2, 450))
@@ -254,7 +254,7 @@ def _draw_hud(surf: pygame.Surface, fonts: dict, game):
     y = SCREEN_H - 130
     for line in [
         "WASD: Move",
-        "RClick: Attack",
+        "LClick: Attack",
         "E: Area Skill",
         "SPACE: Potion",
         "F: Shop",

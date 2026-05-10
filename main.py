@@ -210,7 +210,7 @@ class Game:
                 if button == 1:
                     self.shop.handle_click(pos, self.player, self.stats, self.floor, self.floats)
                 return
-            if button == 3:   # Right click → attack
+            if button == 1:   # Left click → attack
                 self.player.attack_nearest(self.enemies, self.floats, self.stats)
 
     # ── Update ────────────────────────────────────────────────────────────────

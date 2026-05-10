@@ -9,7 +9,7 @@ class StatsCollector:
     def __init__(self):
         self.combat_log = []
         self.shop_log   = []
-        self.run_id     = 1
+        self.run_id     = self._load_last_run_id()
         self._enc       = self._blank_enc()
 
     # ── Internal helpers ──────────────────────────────────────────────────────
@@ -20,6 +20,7 @@ class StatsCollector:
     def reset_run(self):
         self.combat_log.clear()
         self.shop_log.clear()
+        self.run_id += 1 
         self._enc = self._blank_enc()
 
     # ── Per-frame accumulators ────────────────────────────────────────────────
@@ -54,7 +55,7 @@ class StatsCollector:
         ]:
             if not data:
                 continue
-            with open(fname, "w", newline="", encoding="utf-8") as f:
+            with open(fname, "a", newline="", encoding="utf-8") as f:
                 w = csv.DictWriter(f, fieldnames=data[0].keys())
                 w.writeheader()
                 w.writerows(data)
@@ -73,3 +74,12 @@ class StatsCollector:
             "damage_dealt":   total_dmg_out,
             "potions_used":   total_pots,
         }
+    
+    def _load_last_run_id(self):
+        try:
+            with open("combat_log.csv", "r", encoding="utf-8") as f:
+                rows = list(csv.DictReader(f))
+                return int(rows[-1]["run_id"]) + 1 if rows else 1
+        except FileNotFoundError:
+            return 1
+
