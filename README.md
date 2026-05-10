@@ -125,7 +125,6 @@ python3 data_analysis.py
 
 - Sound effects and background music are not yet implemented.
 - skill animations for the player class (currently uses instant-hit attack).
-- skill is too overpower(op) not balanced yet
 
 ---
 
